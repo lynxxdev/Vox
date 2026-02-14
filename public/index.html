@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOX</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+
+  #loader {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  iframe {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="loader">...</div>
+
+<iframe id="hiddenFrame" src="/vox.html"></iframe>
+
+<script>
+  const iframe = document.getElementById('hiddenFrame');
+  const loader = document.getElementById('loader');
+
+  iframe.onload = () => {
+    loader.style.display = 'none';
+    iframe.style.display = 'block';
+  };
+</script>
+
+</body>
+</html>
